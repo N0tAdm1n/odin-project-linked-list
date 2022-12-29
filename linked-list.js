@@ -103,6 +103,17 @@ function LinkedList() {
     return null;
   }
 
+  function toString() {
+    let currentPointer = head;
+    let listString = "";
+    while (currentPointer) {
+      listString = listString + `( ${currentPointer.value} ) -> `;
+      currentPointer = currentPointer.nextNode;
+    }
+
+    return listString + "null";
+  }
+
   return {
     get head() {
       return head;
@@ -115,6 +126,7 @@ function LinkedList() {
     pop,
     contains,
     find,
+    toString,
   };
 }
 
@@ -129,3 +141,4 @@ list.append(4);
 // console.log(list.contains(8));
 console.log(list.find(4));
 console.log(list.find(2));
+console.log(list.toString());
