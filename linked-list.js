@@ -114,6 +114,26 @@ function LinkedList() {
     return listString + "null";
   }
 
+  function insertAt(value, index) {
+    let currentPointer = head;
+    let newNode = Node(value);
+    let currentIndex = 0;
+
+    if (index > size()) return "Index out of bound";
+
+    if (index == 0) {
+      prepend(value);
+      return;
+    }
+
+    while (currentIndex + 1 < index) {
+      currentPointer = currentPointer.nextNode;
+      currentIndex++;
+    }
+    newNode.nextNode = currentPointer.nextNode;
+    currentPointer.nextNode = newNode;
+  }
+
   return {
     get head() {
       return head;
@@ -127,6 +147,7 @@ function LinkedList() {
     contains,
     find,
     toString,
+    insertAt,
   };
 }
 
@@ -139,6 +160,8 @@ list.append(4);
 
 // console.log(list.pop());
 // console.log(list.contains(8));
-console.log(list.find(4));
-console.log(list.find(2));
+// console.log(list.find(4));
+// console.log(list.find(2));
+console.log(list.toString());
+console.log(list.insertAt(2, 2));
 console.log(list.toString());
