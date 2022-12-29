@@ -174,6 +174,8 @@ function LinkedList() {
   };
 }
 
+export { LinkedList };
+
 let list = LinkedList();
 
 list.append(5);
