@@ -134,6 +134,28 @@ function LinkedList() {
     currentPointer.nextNode = newNode;
   }
 
+  function removeAt(index) {
+    let currentPointer = head;
+    let previousPointer;
+    let currentIndex = 0;
+    let removedValue;
+
+    if (index == 0) {
+      removedValue = head.value;
+      head = head.nextNode;
+      return removedValue;
+    }
+
+    while (currentIndex < index) {
+      previousPointer = currentPointer;
+      currentPointer = currentPointer.nextNode;
+      currentIndex++;
+    }
+
+    previousPointer.nextNode = currentPointer.nextNode;
+    return currentPointer.value;
+  }
+
   return {
     get head() {
       return head;
@@ -148,6 +170,7 @@ function LinkedList() {
     find,
     toString,
     insertAt,
+    removeAt,
   };
 }
 
@@ -156,12 +179,14 @@ let list = LinkedList();
 list.append(5);
 list.append(9);
 list.append(4);
-// console.log(list.at("undefined"));
+console.log(list.at(2));
 
-// console.log(list.pop());
-// console.log(list.contains(8));
-// console.log(list.find(4));
-// console.log(list.find(2));
+console.log(list.pop());
+console.log(list.contains(8));
+console.log(list.find(4));
+console.log(list.find(2));
 console.log(list.toString());
 console.log(list.insertAt(2, 2));
+console.log(list.toString());
+console.log(list.removeAt(0));
 console.log(list.toString());
