@@ -90,6 +90,19 @@ function LinkedList() {
     return false;
   }
 
+  function find(value) {
+    let currentPointer = head;
+    let index = 0;
+
+    while (currentPointer) {
+      if (currentPointer.value == value) return index;
+      currentPointer = currentPointer.nextNode;
+      index++;
+    }
+
+    return null;
+  }
+
   return {
     get head() {
       return head;
@@ -101,6 +114,7 @@ function LinkedList() {
     at,
     pop,
     contains,
+    find,
   };
 }
 
@@ -112,5 +126,6 @@ list.append(4);
 // console.log(list.at("undefined"));
 
 // console.log(list.pop());
-console.log(list.contains(8));
-// console.log(Node(5));
+// console.log(list.contains(8));
+console.log(list.find(4));
+console.log(list.find(2));
