@@ -46,12 +46,6 @@ function LinkedList() {
     return listSize;
   }
 
-  function getHead() {
-    if (head) return head.value;
-
-    return head;
-  }
-
   function getTail() {
     if (head) return _findEndOfList().value;
 
@@ -70,14 +64,33 @@ function LinkedList() {
     return nodePointer.value;
   }
 
+  function pop() {
+    if (!head) return "List is empty";
+
+    let currentPointer = head;
+    let nextPointer = head.nextNode;
+    let poppedValue;
+    while (nextPointer.nextNode != null) {
+      currentPointer = currentPointer.nextNode;
+      nextPointer = nextPointer.nextNode;
+    }
+
+    poppedValue = nextPointer.value;
+    currentPointer.nextNode = null;
+
+    return poppedValue;
+  }
+
   return {
-    head,
+    get head() {
+      return head;
+    },
     append,
     prepend,
     size,
-    getHead,
     getTail,
     at,
+    pop,
   };
 }
 
@@ -85,8 +98,10 @@ let list = LinkedList();
 
 list.append(5);
 list.append(9);
-// list.append(4);
-console.log(list.at("undefined"));
-// console.log(LinkedList().head);
+list.append(4);
+// console.log(list.at("undefined"));
+console.log(list.size());
 
+console.log(list.pop());
+console.log(list.size());
 // console.log(Node(5));
