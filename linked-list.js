@@ -68,17 +68,26 @@ function LinkedList() {
     if (!head) return "List is empty";
 
     let currentPointer = head;
-    let nextPointer = head.nextNode;
     let poppedValue;
-    while (nextPointer.nextNode != null) {
+    while (currentPointer.nextNode.nextNode) {
       currentPointer = currentPointer.nextNode;
-      nextPointer = nextPointer.nextNode;
     }
 
-    poppedValue = nextPointer.value;
+    poppedValue = currentPointer.value;
     currentPointer.nextNode = null;
 
     return poppedValue;
+  }
+
+  function contains(value) {
+    let currentPointer = head;
+
+    while (currentPointer) {
+      if (currentPointer.value == value) return true;
+      currentPointer = currentPointer.nextNode;
+    }
+
+    return false;
   }
 
   return {
@@ -91,6 +100,7 @@ function LinkedList() {
     getTail,
     at,
     pop,
+    contains,
   };
 }
 
@@ -100,8 +110,7 @@ list.append(5);
 list.append(9);
 list.append(4);
 // console.log(list.at("undefined"));
-console.log(list.size());
 
-console.log(list.pop());
-console.log(list.size());
+// console.log(list.pop());
+console.log(list.contains(8));
 // console.log(Node(5));
